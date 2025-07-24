@@ -4,7 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import ErrorBoundary from './components/ErrorBoundary';
 import Dashboard from './components/Dashboard';
 import BugList from './components/BugList';
-import BugForm from './components/BugForm';
+import BugForm from './components/BugForm.test';
 import { useBugs } from './hooks/useBugs';
 import './App.css';
 
