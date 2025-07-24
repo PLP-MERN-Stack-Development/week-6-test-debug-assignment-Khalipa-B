@@ -1,0 +1,40 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Backend",
+      "program": "${workspaceFolder}/backend/server.js",
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "integratedTerminal",
+      "restart": true,
+      "runtimeExecutable": "nodemon",
+      "runtimeArgs": ["--inspect"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Backend Tests",
+      "program": "${workspaceFolder}/backend/node_modules/.bin/jest",
+      "args": ["--runInBand", "--detectOpenHandles"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "env": {
+        "NODE_ENV": "test"
+      }
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Debug Frontend",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/frontend/src",
+      "sourceMapPathOverrides": {
+        "webpack:///src/*": "${webRoot}/*"
+      }
+    }
+  ]
+}
