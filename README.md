@@ -126,6 +126,7 @@ Content-Type: application/json
   "assignee": "John Doe",
   "reporter": "Jane Smith"
 }
+
 Response
 json{
   "success": true,
@@ -142,6 +143,7 @@ json{
     "updatedAt": "2023-09-01T10:00:00.000Z"
   }
 }
+
 Testing Strategy
 Backend Testing
 Unit Tests
@@ -163,6 +165,7 @@ backend/tests/
 │   └── validation.test.js    # Validation tests
 └── routes/
     └── bugRoutes.test.js     # API tests
+
 Frontend Testing
 Unit Tests
 
@@ -215,14 +218,17 @@ Memoization
 Bundle optimization
 
 Deployment
+
 Environment Variables
 Backend (.env)
 envNODE_ENV=production
 PORT=5000
 MONGODB_URI=mongodb://localhost:27017/bugtracker
+
 Frontend (.env)
 envREACT_APP_API_URL=https://your-api-domain.com
 REACT_APP_ENV=production
+
 Production Build
 bash# Frontend
 cd frontend

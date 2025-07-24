@@ -20,7 +20,7 @@ router.get('/', getAllBugs);
 router.get('/:id', getBugById);
 
 // POST /api/bugs - Create new bug
-router.post('/', createBug);
+router.post('/api/bugs', createBug);
 
 // PUT /api/bugs/:id - Update bug
 router.put('/:id', updateBug);

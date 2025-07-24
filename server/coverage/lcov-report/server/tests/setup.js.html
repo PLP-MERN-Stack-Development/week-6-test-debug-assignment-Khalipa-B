@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/13</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
@@ -84,22 +84,34 @@
 <a name='L19'></a><a href='#L19'>19</a>
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
-<a name='L22'></a><a href='#L22'>22</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -107,33 +119,39 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const { MongoMemoryServer } = <span class="cstat-no" title="statement not covered" >require('mongodb-memory-server');</span>
 const mongoose = <span class="cstat-no" title="statement not covered" >require('mongoose');</span>
-const app = <span class="cstat-no" title="statement not covered" >require('../app');</span>
 &nbsp;
-&nbsp;
-let mongo;
+let mongoServer;
 &nbsp;
 <span class="cstat-no" title="statement not covered" >beforeAll(<span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  mongo = await MongoMemoryServer.create();</span>
-<span class="cstat-no" title="statement not covered" >  await mongoose.connect(mongo.getUri());</span>
-});
-&nbsp;
-<span class="cstat-no" title="statement not covered" >afterEach(<span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {</span>
-  const collections = <span class="cstat-no" title="statement not covered" >await mongoose.connection.db.collections();</span>
-<span class="cstat-no" title="statement not covered" >  for (let collection of collections) <span class="cstat-no" title="statement not covered" >await collection.deleteMany();</span></span>
+<span class="cstat-no" title="statement not covered" >  mongoServer = await MongoMemoryServer.create();</span>
+  const mongoUri = <span class="cstat-no" title="statement not covered" >mongoServer.getUri();</span>
+  
+<span class="cstat-no" title="statement not covered" >  await mongoose.connect(mongoUri, {</span>
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 });
 &nbsp;
 <span class="cstat-no" title="statement not covered" >afterAll(<span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >  await mongoose.disconnect();</span>
-<span class="cstat-no" title="statement not covered" >  await mongo.stop();</span>
+<span class="cstat-no" title="statement not covered" >  await mongoServer.stop();</span>
 });
-&nbsp;</pre></td></tr></table></pre>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >afterEach(<span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {</span>
+  const collections = <span class="cstat-no" title="statement not covered" >mongoose.connection.collections;</span>
+  
+<span class="cstat-no" title="statement not covered" >  for (const key in collections) {</span>
+    const collection = <span class="cstat-no" title="statement not covered" >collections[key];</span>
+<span class="cstat-no" title="statement not covered" >    await collection.deleteMany({});</span>
+  }
+});</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-07-23T17:33:02.773Z
+                at 2025-07-24T17:19:31.091Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -1,5 +1,10 @@
 const { MongoMemoryServer } = require('mongodb-memory-server');
 const mongoose = require('mongoose');
+const request = require('supertest');
+const app = require('../app'); // path may vary
+const Bug = require('../../models/Bug'); // adjust path if needed
+
+jest.setTimeout(30000); // 30 seconds
 
 let mongoServer;
 

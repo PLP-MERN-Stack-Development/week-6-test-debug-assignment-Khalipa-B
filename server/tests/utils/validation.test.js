@@ -1,3 +1,5 @@
+const request = require('supertest');
+const app = require('../app'); // path may vary
 const { validateBug, sanitizeInput, isValidObjectId } = require('../../utils/validation');
 
 describe('Validation Utils', () => {

@@ -1,3 +1,5 @@
+const validateBugForm = require("../components/utils/validateBugForm");
+
 export const validateBugForm = (formData) => {
   const errors = {};
   

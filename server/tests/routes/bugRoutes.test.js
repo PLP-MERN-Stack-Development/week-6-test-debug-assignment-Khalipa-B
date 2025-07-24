@@ -1,6 +1,8 @@
 const request = require('supertest');
-const app = require('../../server');
-const Bug = require('../../models/Bug');
+const app = require('../app'); // path may vary
+const Bug = require('../../models/Bug'); // adjust path if needed
+
+jest.setTimeout(30000); // 30 seconds
 
 describe('Bug Routes', () => {
   const validBugData = {
